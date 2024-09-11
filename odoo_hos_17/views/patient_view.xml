@@ -1,0 +1,59 @@
+<odoo>
+    <record id="view_patient_form" model="ir.ui.view">
+        <field name="name">patient.form</field>
+        <field name="model">patient</field>
+        <field name="arch" type="xml">
+            <form string="Patient Form">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button name="action_after" type="object" class="btn-danger" string="Set To After"
+                            condition="state == 'draft'"/>
+                    <button name="action_examination" type="object" class="btn-danger" string="Examination"
+                            condition="state == 'after'"/>
+                    <button name="action_done" type="object" class="btn-danger" string="Done"
+                            condition="state == 'examination'"/>
+                    <button name="%(odoo_hos.action_patient_examination)d" type="action" class="oe_highlight"
+                            string="Start"
+                            condition="state == 'after'"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="note"/>
+                    </group>
+                    <group>
+                        <field name="examination_date" readonly="1"/>
+                        <field name="department_id" readonly="1"/>
+                        <field name="doctor_id" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_patient_tree" model="ir.ui.view">
+        <field name="name">patient.tree</field>
+        <field name="model">patient</field>
+        <field name="arch" type="xml">
+            <tree string="Patient List">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="examination_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_management" name="Hospital Management" sequence="1"/>
+    <menuitem id="menu_individual" name="Individuals" parent="menu_management" sequence="2"/>
+    <menuitem id="menu_patient" name="Patients" parent="menu_individual" action="action_patient"/>
+</odoo>
