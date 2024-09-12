@@ -28,6 +28,7 @@
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'wizard/patient_examination_view.xml',
         'views/patient_view.xml',

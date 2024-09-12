@@ -12,7 +12,7 @@
                             condition="state == 'after'"/>
                     <button name="action_done" type="object" class="btn-danger" string="Done"
                             condition="state == 'examination'"/>
-                    <button name="%(odoo_hos.action_patient_examination)d" type="action" class="oe_highlight"
+                    <button name="%(odoo_hos_17.action_patient_examination)d" type="action" class="oe_highlight"
                             string="Start"
                             condition="state == 'after'"/>
                 </header>
